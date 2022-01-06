@@ -257,7 +257,7 @@ class Tournament:
         view_path = os.path.join(PLANET_WARS_MODULE_PATH, "viewer", "ShowGame.jar")
         # in windows we need to save the battle to file because there is limit to the cmd command length of 8161 chars
         if os.name == "nt":
-            battle_file_path = os.path.join(__file__, "..", "tmp", f"battle_{time.time()}.txt")
+            battle_file_path = os.path.join(PLANET_WARS_MODULE_PATH, "tmp", f"battle_{time.time()}.txt")
             with open(battle_file_path, "w") as f:
                 f.write(battle_description_for_display)
             command = f'type {battle_file_path} | java -jar {view_path}'
