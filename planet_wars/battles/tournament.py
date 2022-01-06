@@ -54,8 +54,17 @@ class PlayerScore:
 class Tournament:
     """
     Runs a tournament between list of players' bots.
+    2 options:
+
+    all_against_all = True
     In the tournament each player will battle each other player (on each map).
     The winner is the player that wins the most battle (tie is awarded with half of the points)
+
+    all_against_all = False
+    Will have a fighting rounds where only the winner goes to the next round.
+    In each round each player will fight 2 other random players and will have to win/reach tie in at least one battle
+    to go to the next round.
+    The player that wins the last round is the winner.
     """
 
     def __init__(
@@ -98,27 +107,37 @@ class Tournament:
                             self.run_battle(map_str, player1=player1, player2=player2)
                         )
             else:
+                # Shuffle the players so the pairs are random
                 shuffled_players = self.players.copy()
                 random.shuffle(shuffled_players)
                 next_round_players = shuffled_players
+
+                # Some initializations
                 round_number = 0
                 round_pairs = []
                 round_winners = []
+
+                # Main tournament loop
                 while len(next_round_players) > 1:
+                    round_number += 1
+
+                    # Create the pairs - each player will play against the player before and after it in the list
                     pairs = [(next_round_players[i], next_round_players[i + 1]) for i in
                              range(len(next_round_players) - 1)]
-                    round_number += 1
                     pairs_str = "\t".join(
                         self._get_player_name(pair[0]) + "-" + self._get_player_name(pair[1]) for pair in pairs
                     )
                     round_pairs.append(pairs_str)
+
                     print(f"Round {round_number}\n{pairs_str}")
 
                     next_round_players = []
+                    # Run the current round battles
                     for player1, player2 in pairs:
                         battle_result = self.run_battle(map_str, player1=player1, player2=player2)
                         self.battle_results.append(battle_result)
 
+                        # The winner goes to the next round
                         if battle_result.winner == 1:
                             next_round_players.append(player1)
                         elif battle_result.winner == 2:
@@ -127,6 +146,7 @@ class Tournament:
                             next_round_players.extend([player1, player2])
 
                     round_winners.append("\t".join(self._get_player_name(player) for player in next_round_players))
+                    # Make sure next_round_players is unique while preserving the order
                     next_round_players = [
                         next_round_players[i] for i in range(len(next_round_players))
                         if next_round_players[i] not in next_round_players[i+1:]
