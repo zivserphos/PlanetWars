@@ -2,7 +2,7 @@ from typing import Iterable
 
 import pandas as pd
 
-from courses.planet_wars.planet_wars import Player, PlanetWars, Order, Planet
+from planet_wars.planet_wars import Player, PlanetWars, Order, Planet
 import numpy as np
 
 

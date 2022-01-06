@@ -1,17 +1,17 @@
-from courses.planet_wars.player_bots.data_campers.best_bot_in_galaxy import BestBotInGalaxy
-from courses.planet_wars.player_bots.ender.EnderBot import EnderBot
-from courses.planet_wars.player_bots.kong_fu_pandas.baseline_bot import KongFuSyrianPandas
-from courses.planet_wars.player_bots.rocket_league.baseline_bot import rocket_league_bot
-from courses.planet_wars.player_bots.rubber_ducks.Bot1 import Bot1
-from courses.planet_wars.player_bots.space_pirates.baseline_bot import Firstroundstrategy
-from courses.planet_wars.player_bots.under_the_hood.baseline_bot import UnderTheHoodBot
+from planet_wars.player_bots.data_campers.best_bot_in_galaxy import BestBotInGalaxy
+from planet_wars.player_bots.ender.EnderBot import EnderBot
+from planet_wars.player_bots.kong_fu_pandas.baseline_bot import KongFuSyrianPandas
+from planet_wars.player_bots.rocket_league.baseline_bot import rocket_league_bot
+from planet_wars.player_bots.rubber_ducks.Bot1 import Bot1
+from planet_wars.player_bots.space_pirates.baseline_bot import Firstroundstrategy
+from planet_wars.player_bots.under_the_hood.baseline_bot import UnderTheHoodBot
 import random
 from typing import Iterable, List
 from operator import itemgetter
 import math
 
-from courses.planet_wars.planet_wars import Player, PlanetWars, Order, Planet
-from courses.planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
+from planet_wars.planet_wars import Player, PlanetWars, Order, Planet
+from planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
 
 import pandas as pd
 

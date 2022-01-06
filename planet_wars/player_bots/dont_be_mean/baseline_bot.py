@@ -1,11 +1,11 @@
 import random
 from typing import Iterable, List
 
-from courses.planet_wars.planet_wars import Player, PlanetWars, Order, Planet
-from courses.planet_wars.player_bots.dont_be_mean.dont_be_mean_bot import DontBeMean
-from courses.planet_wars.player_bots.fun_with_flags.baseline_bot import NerdBot
-from courses.planet_wars.player_bots.under_the_hood.baseline_bot import UnderTheHoodBot
-from courses.planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
+from planet_wars.planet_wars import Player, PlanetWars, Order, Planet
+from planet_wars.player_bots.dont_be_mean.dont_be_mean_bot import DontBeMean
+from planet_wars.player_bots.fun_with_flags.baseline_bot import NerdBot
+from planet_wars.player_bots.under_the_hood.baseline_bot import UnderTheHoodBot
+from planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
 
 import pandas as pd
 

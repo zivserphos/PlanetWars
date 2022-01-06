@@ -2,15 +2,15 @@ import random
 from typing import Iterable, List
 import numpy as np
 from queue import PriorityQueue
-from courses.planet_wars.planet_wars import Player, PlanetWars, Order, Planet
-from courses.planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
-from courses.planet_wars.player_bots.data_campers.best_bot_in_galaxy import BestBotInGalaxy
-from courses.planet_wars.player_bots.the_princesses.princesses_bot import PrincessesBot
-from courses.planet_wars.player_bots.ender.EnderBot import EnderBot
-from courses.planet_wars.player_bots.rocket_league.baseline_bot import rocket_league_bot
-from courses.planet_wars.player_bots.space_pirates.baseline_bot import Firstroundstrategy
-from courses.planet_wars.player_bots.under_the_hood.baseline_bot import UnderTheHoodBot
-from courses.planet_wars.tournament import Tournament, get_map_by_id
+from planet_wars.planet_wars import Player, PlanetWars, Order, Planet
+from planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
+from planet_wars.player_bots.data_campers.best_bot_in_galaxy import BestBotInGalaxy
+from planet_wars.player_bots.the_princesses.princesses_bot import PrincessesBot
+from planet_wars.player_bots.ender.EnderBot import EnderBot
+from planet_wars.player_bots.rocket_league.baseline_bot import rocket_league_bot
+from planet_wars.player_bots.space_pirates.baseline_bot import Firstroundstrategy
+from planet_wars.player_bots.under_the_hood.baseline_bot import UnderTheHoodBot
+from planet_wars.tournament import Tournament, get_map_by_id
 import pandas as pd
 
 

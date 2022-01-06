@@ -1,10 +1,10 @@
 import random
 from typing import Iterable, List
 
-from courses.planet_wars.planet_wars import Player, PlanetWars, Order, Planet
+from planet_wars.planet_wars import Player, PlanetWars, Order, Planet
 #from courses.planet_wars.player_bots.ender.EnderBot import EnderBot
 #from courses.planet_wars.player_bots.kong_fu_pandas.baseline_bot import KongFuSyrianPandas
-from courses.planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
+from planet_wars.tournament import get_map_by_id, run_and_view_battle, TestBot
 
 import pandas as pd
 import numpy as np
