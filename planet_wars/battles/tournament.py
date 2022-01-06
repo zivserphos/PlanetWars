@@ -1,4 +1,5 @@
 import os
+import random
 import time
 from typing import List, Optional
 
@@ -57,13 +58,20 @@ class Tournament:
     The winner is the player that wins the most battle (tie is awarded with half of the points)
     """
 
-    def __init__(self, players: List[Player], maps: List[str], raise_bot_exceptions: bool=False):
+    def __init__(
+            self,
+            players: List[Player],
+            maps: List[str],
+            raise_bot_exceptions: bool=False,
+            all_against_all: bool = True
+    ):
         """
         Battles will be between each player in each map.
         Each 2 players and map will have 2 battles - changing sides between them.
         :param players: List of players
         :param maps: List of maps
         :param raise_bot_exceptions: If False catch exceptions from the player bots
+        :param all_against_all: If True all bots play against all bots
         """
         assert len(players) >= 2, "tournament needs at least 2 players"
         assert len(maps) >= 1, "tournament needs at least 1 map"
@@ -72,6 +80,7 @@ class Tournament:
         self.raise_bot_exceptions = raise_bot_exceptions
         self.battle_results = []
         self.last_battle_id = 0
+        self.all_against_all = all_against_all
 
     def run_tournament(self) -> List[BattleResult]:
         """
@@ -80,13 +89,57 @@ class Tournament:
         """
         self.battle_results = []
         for map_str in self.maps:
-            for player1 in self.players:
-                for player2 in self.players:
-                    if player1 == player2:
-                        continue
-                    self.battle_results.append(
-                        self.run_battle(map_str, player1=player1, player2=player2)
+            if self.all_against_all:
+                for player1 in self.players:
+                    for player2 in self.players:
+                        if player1 == player2:
+                            continue
+                        self.battle_results.append(
+                            self.run_battle(map_str, player1=player1, player2=player2)
+                        )
+            else:
+                shuffled_players = self.players.copy()
+                random.shuffle(shuffled_players)
+                next_round_players = shuffled_players
+                round_number = 0
+                round_pairs = []
+                round_winners = []
+                while len(next_round_players) > 1:
+                    pairs = [(next_round_players[i], next_round_players[i + 1]) for i in
+                             range(len(next_round_players) - 1)]
+                    round_number += 1
+                    pairs_str = "\t".join(
+                        self._get_player_name(pair[0]) + "-" + self._get_player_name(pair[1]) for pair in pairs
                     )
+                    round_pairs.append(pairs_str)
+                    print(f"Round {round_number}\n{pairs_str}")
+
+                    next_round_players = []
+                    for player1, player2 in pairs:
+                        battle_result = self.run_battle(map_str, player1=player1, player2=player2)
+                        self.battle_results.append(battle_result)
+
+                        if battle_result.winner == 1:
+                            next_round_players.append(player1)
+                        elif battle_result.winner == 2:
+                            next_round_players.append(player2)
+                        elif battle_result.winner == 0:
+                            next_round_players.extend([player1, player2])
+
+                    round_winners.append("\t".join(self._get_player_name(player) for player in next_round_players))
+                    next_round_players = [
+                        next_round_players[i] for i in range(len(next_round_players))
+                        if next_round_players[i] not in next_round_players[i+1:]
+                    ]
+
+                    if len(next_round_players) == 1:
+                        print(f"Winner is {self._get_player_name(next_round_players[0])}")
+                        break
+
+                print("\n\n\n\nTournament Summary: \n\n")
+                for pairs, winners in zip(round_pairs, round_winners):
+                    print(pairs, "\n", winners)
+
         return self.battle_results
 
     @staticmethod
