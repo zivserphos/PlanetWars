@@ -53,7 +53,6 @@ def view_battle(battle_results_df: pd.DataFrame, battle_id: int):
 if __name__ == '__main__':
     print_df(get_battle_results_df(1))
     print("\n\n")
-    # print_df(get_player_results_df(2))
 
     br = get_battle_results_df(1)
     view_battle(br, 7)  # 27 & 44
