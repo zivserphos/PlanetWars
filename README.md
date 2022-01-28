@@ -25,3 +25,16 @@ https://www.python.org/downloads/
 
 pip install pandas:  
 `python3 -m pip install pandas`
+
+## Preparation for cyber4s
+
+checkout cyber4s: `git checkout cyber4s_tournament`  
+create a branch with your team name: `git checkout -b cyber4s\TEAM_NAME`  
+
+copy the baseline code to a folder with your team name:  
+copy `planet_wars\player_bots\baseline_code\baseline_bot.py` to a folder in this format 
+`planet_wars\player_bots\TEAM_NAME\TEAM_NAME_bot.py`
+
+run the baseline bot file and make sure a battle window opens up.   
+
+Commit and push your code. See your branch exists in github.
