@@ -107,7 +107,7 @@ def view_bots_battle():
     run_and_view_battle(AttackWeakestPlanetFromStrongestBot(), AttackEnemyWeakestPlanetFromStrongestBot(), map_str)
 
 
-def test_bot():
+def check_bot():
     """
     Test AttackWeakestPlanetFromStrongestBot against the 2 other bots.
     Print the battle results data frame and the PlayerScore object of the tested bot.
@@ -137,5 +137,5 @@ def test_bot():
 
 
 if __name__ == "__main__":
-    test_bot()
+    check_bot()
     view_bots_battle()
